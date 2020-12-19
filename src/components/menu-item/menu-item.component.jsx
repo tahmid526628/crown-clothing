@@ -23,3 +23,10 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
 )
 
 export default withRouter( MenuItem );
+
+// here withRouter is a Higher Order method by which we can have the access of url props.
+// otherwise we have to pass through the homepage cause homepage has the only access to url props
+// homepage is the chiled of App.js and we set up routing in App.js. that is why only it has the access. 
+// but if we do this then we have to pass the history props in every component until menu item component
+// so better that we use withRouter from react router dom and use it while exporting. 
+// Thank You :)
