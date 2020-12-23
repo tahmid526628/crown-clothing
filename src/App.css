@@ -7,3 +7,8 @@ a {
     text-decoration: none;
     color: black;
 }
+
+* {
+    box-sizing: border-box; 
+    /* it will not affect the component like padding or margin */
+}
