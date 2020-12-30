@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 import './header.style.scss';
 import {ReactComponent as Logo} from '../../assets/crown.svg';
-import { auth } from '../../firebase/firebase.utils';
+
+// firebase
+import { auth } from '../../firebase/firebase.utils'; // this import needed for signin and signout authentication
 
 const Header = ({ currentUser }) => (
     <div className="header">

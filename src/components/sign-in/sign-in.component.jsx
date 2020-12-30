@@ -3,6 +3,8 @@ import React from 'react';
 import './sign-in.style.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
+
+// firebase
 import {signInWithGoogle} from '../../firebase/firebase.utils';
 
 //we need to define class cause we need the access of states
