@@ -30,8 +30,11 @@ const Header = ({ currentUser }) => (
     </div>
 );
 
+
+// the first argument of connect() method and the second argument will be in the App.js
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser
 });
 
+// so we need to upgrade Header with the connect() method to conect with the redux functionality
 export default connect(mapStateToProps)(Header);

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import HomePage from './pages/homepage/homepage.component';
@@ -37,6 +37,9 @@ class App extends React.Component {
               id: snapShot.id,
               ...snapShot.data()
           })
+          // now updated with the redux action setCurrentUser
+          // previously it was set with the component class state, this.state with constructor
+          // but now we removed constructor
         });
       }else{
         setCurrentUser(user);
@@ -60,7 +63,11 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={ShopPage} />
-          <Route exact path="/signin" component={SignInAndSignUp} />
+          <Route exact path="/signin" render={() => 
+            this.props.currentUser ? 
+            (<Redirect to='/' />) :
+            (<SignInAndSignUp />) 
+          } />
           <Route path="/shop/hats" component={HatsPage} />
         </Switch>
       </div>
@@ -68,10 +75,18 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = ({user}) => ({
+  currentUser: user.currentUser
+})
+
+// this is the second argument and first should null here
+// where the first one should be the mapStateToProps which will map to the props( one in App.js for redirecting and another one is
+// in header.component)
+// and the second one should be the mapDispatchProps which will dispatch the props
 const mapDispatchProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchProps)(App);
+export default connect(mapStateToProps, mapDispatchProps)(App);
 
 // first argument of connect() should be null here
