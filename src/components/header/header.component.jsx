@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 
 import './header.style.scss';
 import {ReactComponent as Logo} from '../../assets/crown.svg';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 // firebase
 import { auth } from '../../firebase/firebase.utils'; // this import needed for signin and signout authentication
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
     <div className="header">
         <Link className="logo-container" to="/">
             <Logo className="logo" />
@@ -26,14 +28,23 @@ const Header = ({ currentUser }) => (
                 :
                 <Link className="option" to="/signin">SIGN IN</Link>
             }
+            <CartIcon />
         </div>
+        {   
+            hidden ? null : <CartDropdown /> 
+        }
     </div>
 );
 
 
 // the first argument of connect() method and the second argument will be in the App.js
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+// const mapStateToProps = state => ({
+//     currentUser: state.user.currentUser
+// });
+
+const mapStateToProps = ({ user: {currentUser}, cart: {hidden} }) => ({
+    currentUser,
+    hidden
 });
 
 // so we need to upgrade Header with the connect() method to conect with the redux functionality
