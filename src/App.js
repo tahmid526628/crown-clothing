@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shop_page.component';
@@ -9,6 +10,7 @@ import SignInAndSignUp from './pages/sign-in-and-sign-out/sign-in-and-sign-out.c
 import Header from './components/header/header.component';
 
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
 
 //firebase
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
@@ -75,9 +77,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
-})
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
 
 // this is the second argument and first should null here
 // where the first one should be the mapStateToProps which will map to the props( one in App.js for redirecting and another one is
