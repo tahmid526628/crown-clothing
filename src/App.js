@@ -17,7 +17,7 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 //firebase
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
-// let's say
+// let's says
 const HatsPage = () => (
   <div>
     <h1>HATS</h1>
