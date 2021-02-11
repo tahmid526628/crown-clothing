@@ -18,11 +18,11 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 // let's says
-const HatsPage = () => (
-  <div>
-    <h1>HATS</h1>
-  </div>
-)
+// const HatsPage = () => (
+//   <div>
+//     <h1>HATS</h1>
+//   </div>
+// )
 
 class App extends React.Component {
   unsubscribeFromAuth = null; //this method will for unsubscribe from Auth
@@ -66,14 +66,13 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
+          <Route path="/shop" component={ShopPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route exact path="/signin" render={() => 
             this.props.currentUser ? 
             (<Redirect to='/' />) :
             (<SignInAndSignUp />) 
           } />
-          <Route path="/shop/hats" component={HatsPage} />
         </Switch>
       </div>
     );

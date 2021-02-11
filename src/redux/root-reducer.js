@@ -5,6 +5,8 @@ import storage from 'redux-persist/lib/storage'; // we can also import sessionSt
 
 import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
+import directoryReducer from './directory/directory.reducer';
+import shopReducer  from './shop/shop.reducer';
 
 // now have to configure storage
 const persistConfig = {
@@ -15,7 +17,9 @@ const persistConfig = {
 
 export const rootReducer = combineReducers({
     user: userReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    directory: directoryReducer,
+    shop: shopReducer
 }) // it'll return a giant object bounded by redux functionality
 
 export default persistReducer(persistConfig, rootReducer); 
